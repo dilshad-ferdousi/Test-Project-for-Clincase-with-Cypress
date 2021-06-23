@@ -1,55 +1,115 @@
-import cypress from "cypress";
 
-export class toDoesPage{
 
-    thingsToDoPage_addNew = $(cy.get(".form-control"));
-    thingsToDoPage_learnJS = $(cy.get('.completed > .checkbox > label'));
-    thingsToDoPage_learnReact = $(cy.get(':nth-child(2) > .checkbox > label'));
-    thingsToDoPage_buildAReactApp = $(cy.get('.pending > .checkbox > label'));
-    thingsToDoPage_plusButton = $(cy.get('.add'));
-    thingsToDoPage_searchButton = $(cy.get('.search'));
-    thingsToDoPage_all = $(cy.get('.selected'));
-    thingsToDoPage_active =$(cy.get(':nth-child(2) > a'));
-    thingsToDoPage_complete = $(cy.get(':nth-child(3) > a'));
+//import { contains } from "cypress/types/jquery";
 
+//import cypress from "cypress";
+
+//export class toDoesPage{
+class toDosPage {
 
     navigateToTheURL(url){
         cy.visit(url);
     }
-    Test-Project-for-Clincase-with-Cypress
-    addNewItem(){
-        cy.get(this.thingsToDoPage_addNew).type('itemName{enter}');
+    //--------- Search/Add New text field methods---------
+    getAddNewItemElement(){
+        return cy.get('.form-control')
+        .click();
     }
     
-    clickLearnJavascript(){
-        cy.get(this.thingsToDoPage_learnJS).click();
+    insertAddNewField(){
+       this.getAddNewItemElement()
+       .type('Learn Java{enter}');
+    }
+    checkNewItemIsAddedInTheList(){
+        return cy.get(':nth-child(4) > .checkbox > label')
+        .should('contain.text','Learn Java');
+    }
+    //-------------list elements methods------------
+
+    
+    getLearnJavascriptElement(){
+        return cy.get(':nth-child(1) > .checkbox > label')
+        .click();
+    }
+    getLebelOfFirstElement(){
+        return cy.get(':nth-child(1) > .checkbox > label')
+        .should('contain.text','Learn Javascript');
+    }
+           
+    getLearnReactElement(){
+        return cy.get(':nth-child(2) > .checkbox > label')
+        .click();
+    }
+    getLebelOfSecondElement(){
+        return cy.get(':nth-child(2) > .checkbox > label')
+        .should('contain.text', 'Learn React');
     }
     
-    clickLearnReact(){
-        cy.get(this.thingsToDoPage_learnReact).click();
+    getBuildAReactAppelement(){
+        return cy.get(':nth-child(3) > .checkbox > label')
+        .click();
+    }
+
+    getLebelOfThirdElement(){
+        return cy.get(':nth-child(3) > .checkbox > label')
+        .should('contain.text', 'Build a React App');
     }
     
-    clickBuildAReactApp(){
-        cy.get(this.thingsToDoPage_buildAReactApp).click();
-    }
-    
+    //---------------buttom clicable items elements--------------------
     clickPlusButton(){
-        cy.get(this.thingsToDoPage_plusButton).click();
+        return cy.get('.add')
+        .click();
     }
-    
+    //////////////////////////////////
+    checkPlaceHolderText(){
+         return cy.get('form-control search')
+         .contains('Search');
+        //.expect(placeholder).to.be.equal('Search')
+        //.should('contain.value','Search');
+    }
+    /////////////////
     clickSearchButton(){
-        cy.get(this.thingsToDoPage_searchButton).click();
+        return cy.get('.search')
+        .click();
+    }
+
+    InsertTextInSearchField(text){
+        this.getAddNewItemElement()
+       .type('{text}{enter}');
     }
     
+    //-------------------Filter related methods-----------------------------------------------------
+
     filterWithAll(){
-        cy.get(this.thingsToDoPage_all).click()
+        return cy.get('.filters > :nth-child(1) > a')
+        .click()
     }
     
     filterWithActive(){
-        cy.get(this.thingsToDoPage_active).click()
+        return cy.get(':nth-child(2) > a')
+        .click()
     }
     
     filterWithCompleted(){
-        cy.get(this.thingsToDoPage_complete).click()
+       return cy.get(':nth-child(3) > a')
+       .click()
     }
+
+    //-------------- action elements---------------
+    noItemFound(){
+        return cy.get('.alert')
+        .should('contain.text','There are no items.')
+    }
+    getElementCountOfTheList(length){
+        return cy.get('ul.list-unstyled li div.checkbox')
+        .should('have.length', length);
+    }
+    // getListUlLi(){
+    //     //return cy.get('ul.list-unstyled li div.checkbox')
+    //     return cy.get('div.checkbox')
+    //     .eq(0).click();
+    //}
 }
+const toDo = new toDosPage();
+export default toDo;
+//export default toDosPage;
