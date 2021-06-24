@@ -10,6 +10,7 @@ import toDo from "../page.elements/main.page";
 describe('Apply Active filter on page elements', ()=> {
     it('Go to "Things To Do" page', () => {
         toDo.navigateToTheURL('https://simplest-react-todo-app.herokuapp.com/');
+        toDo.checkPageHeaderIsPresent();
     });
     it('click Active filter to check all active items are showing ', ()=>{
         toDo.filterWithActive();
@@ -19,7 +20,6 @@ describe('Apply Active filter on page elements', ()=> {
         toDo.getLearnJavascriptElement(1);
     });
     it('Click "Active" filter to get count of the item', ()=>{
-        //toDo.filterWithActive();
         toDo.getElementCountOfTheList(2);
     });
     

@@ -10,6 +10,12 @@ class toDosPage {
     navigateToTheURL(url){
         cy.visit(url);
     }
+    checkPageHeaderIsPresent(){
+        cy.get('h1').contains('Things To Do');
+    }
+
+
+
     //--------- Search/Add New text field methods---------
     getAddNewItemElement(){
         return cy.get('.form-control')
@@ -24,9 +30,19 @@ class toDosPage {
         return cy.get(':nth-child(4) > .checkbox > label')
         .should('contain.text','Learn Java');
     }
-    //-------------list elements methods------------
-
+    checkElementThatDosentExistInTheList(){
+        this.getAddNewItemElement()
+       .type('av!{enter}');
+    }
+    insertExistingTextInSearchField(){
+        this.getAddNewItemElement()
+        .type('Learn{enter}');
+     }
     
+    
+    
+    //-------------Item list elements methods------------
+
     getLearnJavascriptElement(){
         return cy.get(':nth-child(1) > .checkbox > label')
         .click();
@@ -55,15 +71,17 @@ class toDosPage {
         .should('contain.text', 'Build a React App');
     }
     
-    //---------------buttom clicable items elements--------------------
+    //---------------buttom clickable items elements--------------------
     clickPlusButton(){
         return cy.get('.add')
         .click();
     }
     //////////////////////////////////
     checkPlaceHolderText(){
-         return cy.get('form-control search')
-         .contains('Search');
+         
+        return cy.get('.form-control').invoke('placeholder').should('contain', 'Search')
+        //return cy.get('[placeholder="Add New"]')   'attr',
+         //.contains('Search');
         //.expect(placeholder).to.be.equal('Search')
         //.should('contain.value','Search');
     }

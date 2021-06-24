@@ -5,13 +5,13 @@
 // 4. check the newly added item is added in the list
 
 
-//import toDoesPage from '../page.elements/main.page';
 import toDo from '../page.elements/main.page';
-//const toDosPage = new toDosPage()
+
 describe('Test navigate to the page and add New item in the list', () => { 
     
     it('Go to "Things To Do" page', () => {
         toDo.navigateToTheURL('https://simplest-react-todo-app.herokuapp.com/');
+        toDo.checkPageHeaderIsPresent();
     });
     it('Add new element "learn Java" using Add New field', () =>{
         toDo.getAddNewItemElement();

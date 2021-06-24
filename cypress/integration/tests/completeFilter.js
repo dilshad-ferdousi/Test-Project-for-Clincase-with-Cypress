@@ -9,8 +9,8 @@ import toDo from "../page.elements/main.page";
 describe('Check "Complete" functionality and Filter is working', () =>{
 
     it('Go to "Things To Do" page', () => {
-        //const getUrl = new toDoesPage();
         toDo.navigateToTheURL('https://simplest-react-todo-app.herokuapp.com/');
+        toDo.checkPageHeaderIsPresent();
     });
     
     it('Click on First element to complete', () =>{
@@ -22,4 +22,8 @@ describe('Check "Complete" functionality and Filter is working', () =>{
     it('Click the "Completed" filter option to check first item is there', () =>{
         toDo.getLebelOfFirstElement();
     });
+    it('Deselect the first item and check the item is gone from Completed list', () =>{
+        toDo.getLearnJavascriptElement();
+        toDo.noItemFound();
+    })
 });

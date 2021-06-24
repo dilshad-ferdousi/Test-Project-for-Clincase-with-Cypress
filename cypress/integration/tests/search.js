@@ -9,32 +9,39 @@
 // 8. search is working and 'No data found' text shows.
 
 
+//import { it } from "mocha";
 import toDo from "../page.elements/main.page";
 
 describe('Apply Search on different elements', ()=>{
 
     it('Go to "Things To Do" page', () => {
-        //const getUrl = new toDoesPage();
+        
         toDo.navigateToTheURL('https://simplest-react-todo-app.herokuapp.com/');
+        toDo.checkPageHeaderIsPresent();
+    });
+    it('Check Page Header is present', () => {
+        
+        toDo.checkPageHeaderIsPresent();
     });
     it('change the input type from add new to search by clicking at the buttom left options', () =>{
         toDo.clickSearchButton();
-        //toDo.checkPlaceHolderText();
+        
     });
-    xit('search with an item which exists in the list', () =>{
-        toDo.InsertTextInSearchField('Java');
+    it('search with a text which exists in the list', () =>{
+        toDo.insertExistingTextInSearchField();
+        toDo.getElementCountOfTheList(2);
     });
-    xit('', () =>{
+   
+    it('search with a text which does not exist in the list.', () =>{
+        toDo.checkElementThatDosentExistInTheList();
+    });
 
+    it('Check "No item found" text shows and clear search text', () =>{
+        toDo.noItemFound();
+        toDo.getAddNewItemElement().clear();
     });
-    xit('', () =>{
-
-    });
-    xit('', () =>{
-
-    });
-    xit('', () =>{
-
+    it('Check all 3 elements are visible aagain after clearing the previous search', () =>{
+        toDo.getElementCountOfTheList(3);
     });
 
     

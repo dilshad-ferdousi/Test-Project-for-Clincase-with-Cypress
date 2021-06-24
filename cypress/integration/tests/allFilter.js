@@ -10,8 +10,9 @@ import toDo from "../page.elements/main.page";
 describe('Apply All filter on page elements', ()=>{
 
     it('Go to "Things To Do" page', () => {
-        //const getUrl = new toDoesPage();
+        
         toDo.navigateToTheURL('https://simplest-react-todo-app.herokuapp.com/');
+        toDo.checkPageHeaderIsPresent();
     });
     it('Click Completed filter and no Item found', ()=>{
         toDo.filterWithCompleted();
