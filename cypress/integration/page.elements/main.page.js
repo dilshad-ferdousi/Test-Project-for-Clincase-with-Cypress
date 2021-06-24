@@ -1,10 +1,5 @@
+//Created by : Dilshad Ferdousi
 
-
-//import { contains } from "cypress/types/jquery";
-
-//import cypress from "cypress";
-
-//export class toDoesPage{
 class toDosPage {
 
     navigateToTheURL(url){
@@ -16,7 +11,10 @@ class toDosPage {
 
 
 
-    //--------- Search/Add New text field methods---------
+    //---------------------- Search/Add New text field methods---------
+    
+    //------select related methods------------
+    
     getAddNewItemElement(){
         return cy.get('.form-control')
         .click();
@@ -41,17 +39,18 @@ class toDosPage {
     
     
     
-    //-------------Item list elements methods------------
-
+    //==========================Item list elements methods=======================
+    //-------------
     getLearnJavascriptElement(){
         return cy.get(':nth-child(1) > .checkbox > label')
         .click();
     }
+    
     getLebelOfFirstElement(){
         return cy.get(':nth-child(1) > .checkbox > label')
         .should('contain.text','Learn Javascript');
     }
-           
+    //-----------------------------------------------       
     getLearnReactElement(){
         return cy.get(':nth-child(2) > .checkbox > label')
         .click();
@@ -60,7 +59,8 @@ class toDosPage {
         return cy.get(':nth-child(2) > .checkbox > label')
         .should('contain.text', 'Learn React');
     }
-    
+    //----------------------------------------
+
     getBuildAReactAppelement(){
         return cy.get(':nth-child(3) > .checkbox > label')
         .click();
@@ -71,31 +71,30 @@ class toDosPage {
         .should('contain.text', 'Build a React App');
     }
     
-    //---------------buttom clickable items elements--------------------
+    //---------------bottom clickable items elements--------------------
     clickPlusButton(){
         return cy.get('.add')
         .click();
     }
-    //////////////////////////////////
-    checkPlaceHolderText(){
+    
+    checkPlaceHolderTextSearch(){
          
-        return cy.get('.form-control').invoke('placeholder').should('contain', 'Search')
-        //return cy.get('[placeholder="Add New"]')   'attr',
-         //.contains('Search');
-        //.expect(placeholder).to.be.equal('Search')
-        //.should('contain.value','Search');
+        return cy.get('.form-control')
+        .invoke('attr','placeholder')
+        .should('contain', 'Search');
     }
-    /////////////////
+    checkPlaceHolderTextAddNew(){
+        return cy.get('.form-control')
+        .invoke('attr','placeholder')
+        .should('contain', 'Add New');
+    }
+   
     clickSearchButton(){
         return cy.get('.search')
         .click();
     }
 
-    InsertTextInSearchField(text){
-        this.getAddNewItemElement()
-       .type('{text}{enter}');
-    }
-    
+        
     //-------------------Filter related methods-----------------------------------------------------
 
     filterWithAll(){
@@ -122,12 +121,7 @@ class toDosPage {
         return cy.get('ul.list-unstyled li div.checkbox')
         .should('have.length', length);
     }
-    // getListUlLi(){
-    //     //return cy.get('ul.list-unstyled li div.checkbox')
-    //     return cy.get('div.checkbox')
-    //     .eq(0).click();
-    //}
+    
 }
 const toDo = new toDosPage();
 export default toDo;
-//export default toDosPage;

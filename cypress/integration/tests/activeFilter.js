@@ -4,11 +4,12 @@
 // 4. count that now Item is 2 in the active list.
 
 
-//import { it } from "mocha";
+
 import toDo from "../page.elements/main.page"; 
 
 describe('Apply Active filter on page elements', ()=> {
-    it('Go to "Things To Do" page', () => {
+    
+    it('Go to "Things To Do" page and check Page Header is present', () => {
         toDo.navigateToTheURL('https://simplest-react-todo-app.herokuapp.com/');
         toDo.checkPageHeaderIsPresent();
     });

@@ -8,7 +8,7 @@ import toDo from "../page.elements/main.page";
 
 describe('Check "Complete" functionality and Filter is working', () =>{
 
-    it('Go to "Things To Do" page', () => {
+    it('Go to "Things To Do" page and check Page Header is present', () => {
         toDo.navigateToTheURL('https://simplest-react-todo-app.herokuapp.com/');
         toDo.checkPageHeaderIsPresent();
     });

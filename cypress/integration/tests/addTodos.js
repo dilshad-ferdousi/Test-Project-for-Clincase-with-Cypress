@@ -9,7 +9,7 @@ import toDo from '../page.elements/main.page';
 
 describe('Test navigate to the page and add New item in the list', () => { 
     
-    it('Go to "Things To Do" page', () => {
+    it('Go to "Things To Do" page and check Page Header is present', () => {
         toDo.navigateToTheURL('https://simplest-react-todo-app.herokuapp.com/');
         toDo.checkPageHeaderIsPresent();
     });
